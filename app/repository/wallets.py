@@ -26,7 +26,7 @@ def get_wallet_balance_by_name(db: Session, wallet_name: str) -> Wallet:
 def get_all_wallets(db: Session) -> list[Wallet]:
     return db.query(Wallet).all()
 
-def create_wallet(db: Session, wallet_name: str, amount: float) -> Wallet:
+def create_wallet(db: Session, wallet_name: str, amount: Decimal) -> Wallet:
     wallet = Wallet(name=wallet_name, balance=amount)
     db.add(wallet)
     db.flush()
