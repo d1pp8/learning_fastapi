@@ -6,6 +6,16 @@ from pydantic import (
 
 from decimal import Decimal
 
+
+class UserRequest(BaseModel):
+    login: str = Field(max_length=127)
+
+
+class UserResponse(UserRequest):
+    model_config = {'from_attributes': True}
+    id: int
+
+
 class CreateWalletRequest(BaseModel):
     name: str = Field(min_length=3, max_length=100)
     initial_balance: Decimal = 0
